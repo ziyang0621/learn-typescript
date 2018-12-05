@@ -1,75 +1,114 @@
-// let & const
-console.log('LET & CONST');
-let variable = 'Test';
-console.log(variable);
-variable = 'Another value';
-console.log('variable');
+class Person {
+    name: string;
+    private type: string;
+    protected age: number = 27;
 
-const maxLevels = 100;
-console.log(maxLevels);
-// maxLevels = 99; // Won't work
-
-// Block scope
-function reset() {
-    // console.log(variable);
-    let variable = null;
-    console.log(variable);
-}
-reset();
-console.log(variable);
-
-// Arrow Functions
-console.log("ARROW FUNCTIONS");
-const addNumbers = function(number1: number, number2: number): number {
-    return number1 + number2;
-};
-console.log(addNumbers(10, 3));
-
-const multiplyNumbers = (number1: number, number2: number) => number1 * number2;
-console.log(multiplyNumbers(10, 3));
-
-const greet = () => {
-    console.log("Hello!");
-};
-greet();
-
-const greetFriend = friend => console.log(friend);
-greetFriend("Manu"); 
-
-// Default Parameters
-console.log('DEFAULT PARAMETERS');
-const countdown = (start: number = 10): void => {
-    console.log(start);
-    while (start > 0) {
-        start --;
+    constructor(name: string, public username: string) {
+        this.name = name;
     }
-    console.log("Done", start);
-};
-countdown();
 
-// Rest & Spread
-console.log("REST & SPREAD");
-const numbers = [1, 10, 99, -5];
-console.log(Math.max(...numbers));
+    printAge() {
+        console.log(this.age);
+        this.setType('Old Guy');
+    }
 
-function makeArray(name: string, ...args: number[]) {
-    return args;
+    private setType(type: string) {
+        this.type = type;
+        console.log(this.type);
+    }
 }
-console.log(makeArray('Max', 1, 2, 6));
 
-// Destructring
-console.log('DESTRUCTRING');
-const myHobbies = ['Cooking', 'Sports'];
-const [hobby1, hobby2] = myHobbies;
-console.log(hobby1, hobby2);
+const person = new Person('Max', 'max');
+console.log(person.name, person.username);
+person.printAge();
+// person.setType('Cool guy');
 
-const userData = {userName: 'Max', age: 27};
-const {userName: myName, age: myAge} = userData;
-console.log(myName, myAge);
+// Inheritance
+class Max extends Person {
+    // name = 'Max';
 
-// Template Literals
-const userName = 'Max';
-const greeting = `This is a heading!
-I'm ${userName}.
-This is cool!`;
-console.log(greeting);
+    constructor(username: string) {
+        super('Max', username);
+        this.age = 31;
+    }
+}
+const max = new Max('max');
+console.log(max);
+
+// Getters & Setters
+class Plant {
+    private _species: string = 'Default';
+
+    get species() {
+        return this._species;
+    }
+
+    set species(value: string) {
+        if (value.length > 3) {
+            this._species = value;
+        } else {
+            this._species = 'Default';
+        }
+    } 
+}
+
+let plant = new Plant();
+console.log(plant.species);
+plant.species = 'AB';
+console.log(plant.species);
+plant.species = 'Green Plant';
+console.log(plant.species);
+
+// Static Properies & Methods
+class Helpers {
+    static PI: number = 3.14;
+    static calCircumference(diameter: number): number {
+        return this.PI * diameter;
+    }
+}
+console.log(2 * Helpers.PI);
+console.log(Helpers.calCircumference(8));
+
+// Abstract Classes
+abstract class Project {
+    projectName: string = 'Default';
+    budget: number;
+
+    abstract changeName(name: string): void;
+
+    calBudget() {
+        return this.budget * 2;
+    }
+}
+
+class ITProject extends Project {
+    changeName(name: string): void {
+        this.projectName = name;
+    }
+}
+
+let newProject = new ITProject();
+console.log(newProject);
+newProject.changeName('Super IT Project');
+console.log(newProject);
+
+// private constructors
+class OnlyOne {
+    private static instance: OnlyOne;
+    public readonly name: string;
+
+    private constructor(name: string) {
+        this.name = name;
+    }
+
+    static getInstance() {
+        if (!OnlyOne.instance) {
+            OnlyOne.instance = new OnlyOne('The Only One');
+        }
+        return OnlyOne.instance;
+    }
+}
+
+// let wrong = new OnlyOne('The Only One');
+let right = OnlyOne.getInstance();
+console.log(right.name);
