@@ -1,7 +1,44 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Circle = require("./math/circle");
-var rectangle_1 = require("./math/rectangle");
-console.log(Circle.PI);
-console.log(Circle.calculateCirumcumference(10));
-console.log(rectangle_1.default(20, 50));
+function greet(person) {
+    console.log("Hello, " + person.firstName);
+}
+function changeName(person) {
+    person.firstName = "Anna";
+}
+var person = {
+    firstName: "Max",
+    hobbies: ["Cooking", "Sports"],
+    greet: function (lastName) {
+        console.log("Hi, I am " + this.firstName + " " + lastName);
+    }
+};
+// greet({firstName: "Max", age: 27});
+changeName(person);
+greet(person);
+person.greet("Anything");
+var Person = /** @class */ (function () {
+    function Person() {
+    }
+    Person.prototype.greet = function (lastName) {
+        console.log("Hi, I am " + this.firstName + " " + lastName);
+    };
+    ;
+    return Person;
+}());
+var myPerson = new Person();
+myPerson.firstName = "Maximilian";
+myPerson.lastName = "Anything";
+greet(myPerson);
+myPerson.greet(myPerson.lastName);
+var myDoubleFunction;
+myDoubleFunction = function (value1, value2) {
+    return (value1 + value2) * 2;
+};
+console.log(myDoubleFunction(10, 20));
+var oldPerson = {
+    age: 27,
+    firstName: "Max",
+    greet: function (lastName) {
+        console.log("Hello!");
+    }
+};
+console.log(oldPerson);

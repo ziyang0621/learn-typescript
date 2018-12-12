@@ -13,11 +13,7 @@
     // set our baseURL reference path
     SystemJS.config({
         baseURL: '/',
-        packages: {
-            '/': {
-                defaultJSExtensions: 'js'
-            }
-        }
+        defaultJSExtensions: true
     });
     SystemJS.import('app.js');
 </script>
