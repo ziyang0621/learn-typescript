@@ -5,6 +5,7 @@
     "noImplicitAny": false,
     "sourceMap": false,
     "experimentalDecorators": true,
+    "noEmitOnError": true,
   },
   "exclude": [
     "node_modules"
