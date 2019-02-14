@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "lite-server",
-    "build": "gulp"
+    "build": "webpack -d --watch",
+    "build:prod": "webpack -p"
   },
   "keywords": [
     "typescript",
@@ -18,7 +19,10 @@
     "@types/jquery": "^3.3.29",
     "gulp": "^4.0.0",
     "gulp-typescript": "^5.0.0",
-    "lite-server": "^2.2.2"
+    "lite-server": "^2.2.2",
+    "ts-loader": "^5.3.3",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3"
   },
   "dependencies": {
     "systemjs": "^0.19.36"
